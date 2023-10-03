@@ -1,5 +1,5 @@
 const { EmbedBuilder, MessageActionRow, MessageButton,ButtonBuilder,ActionRowBuilder, InteractionCollector , AttachmentBuilder} = require('discord.js');
-const {footer,footerIcon} = require('../config.json')
+const {footer,footerIcon,color} = require('../config.json')
 
 
 
@@ -29,13 +29,14 @@ module.exports = {
 
     const fileAttachment = new AttachmentBuilder(attachment);
 
+    const newColor = parseInt(color)
 
 
     // Create the poll embed using EmbedBuilder
     const newEmbed = new EmbedBuilder()
       .setTitle(EmbedName)
       .setDescription(Description)
-      .setColor(0xE67E22)
+      .setColor(newColor)
       .setTimestamp()
       .setThumbnail(thumbnail)
       .setAuthor({ name: interaction.user.username, iconURL: interaction.user.avatarURL(), url: 'https://discord.js.org' })
