@@ -7,7 +7,6 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('create')
         .setDescription('Create a new Embed MSG!'),
-    
     async execute(interaction) {
     // Create the modal
     const embedModal = new ModalBuilder()
@@ -30,13 +29,15 @@ module.exports = {
     .setCustomId('thumbnailURLInput')
     .setLabel('Thumbnail Photo URL')
     .setPlaceholder('Enter the thumbnail URL here')
-    .setStyle(TextInputStyle.Short);
+    .setStyle(TextInputStyle.Short)
+    .setRequired(false);
 
   const attachmentUrlInput = new TextInputBuilder()
     .setCustomId('documentURLInput')
     .setLabel('Attachment URL')
     .setPlaceholder('Enter the attachment URL here')
-    .setStyle(TextInputStyle.Short);
+    .setStyle(TextInputStyle.Short)
+    .setRequired(false);
 
 
   

@@ -1,5 +1,5 @@
 const { EmbedBuilder, MessageActionRow, MessageButton,ButtonBuilder,ActionRowBuilder, InteractionCollector , AttachmentBuilder} = require('discord.js');
-const {footer,footerIcon,color} = require('../config.json')
+const {footer,footerIcon,color,defaultThumbnail} = require('../config.json')
 
 
 
@@ -24,15 +24,12 @@ module.exports = {
   if (interaction.customId === 'embedModal') {
     const EmbedName = interaction.components[0].components[0].value;
     const Description =interaction.components[1].components[0].value;
-    const thumbnail = interaction.components[2].components[0].value;
+    const thumbnail = interaction.components[2].components[0].value || defaultThumbnail;;
     const attachment = interaction.components[3].components[0].value;
-
-    const fileAttachment = new AttachmentBuilder(attachment);
-
     const newColor = parseInt(color)
 
 
-    // Create the poll embed using EmbedBuilder
+    // Create the embed using EmbedBuilder
     const newEmbed = new EmbedBuilder()
       .setTitle(EmbedName)
       .setDescription(Description)
@@ -42,8 +39,16 @@ module.exports = {
       .setAuthor({ name: interaction.user.username, iconURL: interaction.user.avatarURL(), url: 'https://discord.js.org' })
       .setFooter({ text: `${footer}`, iconURL: `${footerIcon}` });
 
-     // Send the poll embed and buttons
-     await interaction.channel.send({ embeds: [newEmbed], files: [fileAttachment]});
+
+      if (attachment) { 
+        const fileAttachment = new AttachmentBuilder(attachment);
+        await interaction.channel.send({ embeds: [newEmbed], files: [fileAttachment]});
+      }
+      else
+      {
+        await interaction.channel.send({ embeds: [newEmbed]});
+      }
+
      await interaction.reply({ content: 'New Embed Created', ephemeral: true });
   }
     }
