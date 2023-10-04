@@ -6,7 +6,7 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 .pnpm-debug.log*
-
+config.json
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
@@ -126,3 +126,5 @@ dist
 .yarn/install-state.gz
 .pnp.*
 .DS_Store
+src/config.json
+src/config.json
